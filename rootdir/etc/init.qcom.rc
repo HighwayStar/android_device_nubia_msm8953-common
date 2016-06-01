@@ -305,6 +305,12 @@ on post-fs-data
     mkdir /data/fota 0771
     chown system system /data/fota
 
+    # SSC/SLPI sensors
+    mkdir /persist/sensors 0775 sensors sensors
+    write /persist/sensors/sensors_settings 1
+    chown system root /persist/sensors/sensors_settings
+    chmod 0664 /persist/sensors/sensors_settings
+
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
@@ -607,7 +613,6 @@ service sensors /vendor/bin/sensors.qcom
     class core
     user root
     group root
-    disabled
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -782,11 +787,6 @@ service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
     group root system radio
-    oneshot
-
-service sensor-sh /vendor/bin/init.qcom.sensors.sh
-    class core
-    user root
     oneshot
 
 on property:ro.runtime.mbn_copy_completed=1
