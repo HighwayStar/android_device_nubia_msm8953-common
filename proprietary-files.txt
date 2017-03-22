@@ -33,7 +33,6 @@ vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
 
 # Bluetooth
-bin/btnvtool
 bin/hci_qcomm_init
 bin/wcnss_filter
 vendor/lib/libbtnv.so
