@@ -278,6 +278,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.nb.device.rc
 
+# QCOM
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
+
 # RCS
 PRODUCT_PACKAGES += \
     rcs_service_aidl \
