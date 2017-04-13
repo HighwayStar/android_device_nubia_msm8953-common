@@ -639,7 +639,7 @@ service qti /vendor/bin/qti
     group radio oem_2901 usb net_admin
     disabled
 
-service sensors /system/bin/sensors.qcom
+service sensors /vendor/bin/sensors.qcom
     class core
     user root
     group root
