@@ -23,7 +23,6 @@ vendor/lib64/libadiertac.so|88fb1b48e4a4bf877ee418d0169ebf097fec8231
 vendor/lib64/libaudcal.so|5ef069f884a81065bd5cff03d1749bc9330f3b3f
 
 # Bluetooth
-bin/hci_qcomm_init
 bin/wcnss_filter
 vendor/lib64/libbtnv.so
 
