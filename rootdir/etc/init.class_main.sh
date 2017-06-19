@@ -31,7 +31,7 @@
 # start ril-daemon only for targets on which radio is present
 #
 baseband=`getprop ro.baseband`
-sgltecsfb=`getprop persist.radio.sglte_csfb`
+sgltecsfb=`getprop persist.vendor.radio.sglte_csfb`
 datamode=`getprop persist.vendor.data.mode`
 
 case "$baseband" in
@@ -54,7 +54,7 @@ case "$baseband" in
           if [ "x$sgltecsfb" != "xtrue" ]; then
               start qmiproxy
           else
-              setprop persist.radio.voice.modem.index 0
+              setprop persist.vendor.radio.voice.modem.index 0
           fi
         ;;
         "dsda2")
