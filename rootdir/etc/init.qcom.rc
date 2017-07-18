@@ -225,6 +225,9 @@ on post-fs-data
     mkdir /data/vendor/ipa 0770 radio radio
     chmod 0770 /data/vendor/ipa
 
+    #Create directory for tftp
+    mkdir /data/vendor/tombstones 0771 system system
+
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # Create the directories used by the Wireless subsystem
