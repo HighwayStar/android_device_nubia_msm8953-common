@@ -165,9 +165,6 @@ BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
-# Sensors
-USE_SENSOR_MULTI_HAL := true
-
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
