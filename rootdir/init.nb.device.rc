@@ -3,13 +3,9 @@
 # init.nb.rc
 # For all nubia projects defined in device/zte
 
-service gx_fpd /system/bin/gx_fpd
+service gx_fpd /vendor/bin/gx_fpd
     class core
     user system
     group system
     writepid /dev/cpuset/system-background/tasks
 
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    writepid /dev/cpuset/system-background/tasks
