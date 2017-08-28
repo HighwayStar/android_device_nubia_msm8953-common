@@ -115,7 +115,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fingerprintd
 
-# FS config
+# For config.fs
 PRODUCT_PACKAGES += \
     fs_config_files
 
