@@ -40,7 +40,7 @@ setup_vendor "$DEVICE_COMMON" "$VENDOR" "$LINEAGE_ROOT" true
 write_headers "nx549j nx551j"
 
 # Main Qcom blobs
-write_makefiles "$MY_DIR"/proprietary-files.txt
+write_makefiles "$MY_DIR"/proprietary-files.txt true
 
 # Blobs for TWRP data decryption
 cat << EOF >> "$BOARDMK"
@@ -61,7 +61,7 @@ if [ -s "$MY_DIR"/../$DEVICE/proprietary-files.txt ]; then
     write_headers
 
     # The standard device blobs
-    write_makefiles "$MY_DIR"/../$DEVICE/proprietary-files.txt
+    write_makefiles "$MY_DIR"/../$DEVICE/proprietary-files.txt true
 
     # We are done!
     write_footers
