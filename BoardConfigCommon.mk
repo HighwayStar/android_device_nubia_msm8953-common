@@ -105,9 +105,8 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += \
-    hardware/cyanogen/cmhw
+    hardware/lineage/lineagehw
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
