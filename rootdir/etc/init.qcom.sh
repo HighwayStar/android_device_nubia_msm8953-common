@@ -95,14 +95,6 @@ start_msm_irqbalance()
 	fi
 }
 
-start_copying_prebuilt_qcril_db()
-{
-    if [ -f /vendor/radio/qcril_database/qcril.db -a ! -f /data/vendor/radio/qcril.db ]; then
-        cp /vendor/radio/qcril_database/qcril.db /data/vendor/radio/qcril.db
-        chown -h radio.radio /data/vendor/radio/qcril.db
-    fi
-}
-
 baseband=`getprop ro.baseband`
 echo 1 > /proc/sys/net/ipv6/conf/default/accept_ra_defrtr
 
@@ -307,12 +299,6 @@ case "$target" in
         # Nubia M2 nx551j has keys
         setprop qemu.hw.mainkeys 1
 esac
-
-#
-# Copy qcril.db if needed for RIL
-#
-start_copying_prebuilt_qcril_db
-echo 1 > /data/vendor/radio/db_check_done
 
 #
 # Make modem config folder and copy firmware config to that folder for RIL
