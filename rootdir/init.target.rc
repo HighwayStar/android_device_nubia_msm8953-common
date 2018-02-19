@@ -237,10 +237,10 @@ service adsprpcd /vendor/bin/adsprpcd
     user media
     group media
 
-service hvdcp_opti /system/bin/hvdcp_opti
+service hvdcp_opti /vendor/bin/hvdcp_opti
    class main
    user root
-   group root
+   group system wakelock
 
 on property:init.svc.dts_configurator=stopped
     start dtseagleservice
