@@ -43,8 +43,9 @@ esac
 case "$baseband" in
     "msm" | "csfb" | "svlte2a" | "mdm" | "mdm2" | "sglte" | "sglte2" | "dsda2" | "unknown" | "dsda3")
     start vendor.qmuxd
-    start ipacm-diag
-    start ipacm
+    start vendor.ipacm-diag
+    start vendor.ipacm
+
     case "$baseband" in
         "svlte2a" | "csfb")
           start qmiproxy
