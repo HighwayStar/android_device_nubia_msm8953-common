@@ -39,7 +39,7 @@ persist.camera.isp.turbo=1
 persist.camera.vdbea.switch=1
 
 # CNE
-persist.cne.feature=1
+persist.vendor.cne.feature=1
 
 # Display
 debug.gralloc.enable_fb_ubwc=1
