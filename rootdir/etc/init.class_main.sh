@@ -32,7 +32,7 @@
 #
 baseband=`getprop ro.baseband`
 sgltecsfb=`getprop persist.radio.sglte_csfb`
-datamode=`getprop persist.data.mode`
+datamode=`getprop persist.vendor.data.mode`
 
 case "$baseband" in
     "apq")
