@@ -9,3 +9,8 @@ service gx_fpd /vendor/bin/gx_fpd
     group system
     writepid /dev/cpuset/system-background/tasks
 
+on property:goodix.fp.service.ready=1
+   start fps_hal
+on property:persist.sys.fp.onstart=1
+   start fps_hal
+
