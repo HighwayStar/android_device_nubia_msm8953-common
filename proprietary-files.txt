@@ -304,7 +304,6 @@ vendor/lib64/libllvm-qgl.so
 vendor/lib64/libmmQSM.so
 vendor/lib64/librs_adreno.so
 vendor/lib64/librs_adreno_sha1.so
-vendor/lib64/libuiblur.so
 
 # Graphics firmware
 etc/firmware/a506_zap.b00
