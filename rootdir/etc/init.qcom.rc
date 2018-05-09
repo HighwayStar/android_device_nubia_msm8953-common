@@ -610,7 +610,7 @@ service vendor.dataqti /vendor/bin/qti
     disabled
 
 service sensors /vendor/bin/sensors.qcom
-    class core
+    class main
     user root
     group root
 
