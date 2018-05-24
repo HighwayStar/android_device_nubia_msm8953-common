@@ -101,9 +101,6 @@ persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
 persist.radio.apm_sim_not_pwdn=1
 
-# Time services
-persist.timed.enable=true
-
 # Usb
 persist.sys.usb.config.extra=none
 
