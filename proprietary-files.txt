@@ -22,9 +22,9 @@ vendor/lib64/libacdbrtac.so|ba4758bac6bd72f955884d4634cc7f8fa944018f
 vendor/lib64/libadiertac.so|88fb1b48e4a4bf877ee418d0169ebf097fec8231
 vendor/lib64/libaudcal.so|5ef069f884a81065bd5cff03d1749bc9330f3b3f
 
-# Bluetooth
-bin/wcnss_filter
-vendor/lib64/libbtnv.so
+# Bluetooth - from bardock - OPM1.171019.019
+vendor/bin/wcnss_filter|adee628bd5c48ab1ceb87fb3224fda1442760fb4
+vendor/lib64/libbtnv.so|21c928e2d68980008ce8d8d1312ded932e79768d
 
 # Camera common firmware
 etc/firmware/cpp_firmware_v1_1_1.fw
