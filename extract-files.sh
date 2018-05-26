@@ -58,16 +58,23 @@ setup_vendor "$DEVICE_COMMON" "$VENDOR" "$LINEAGE_ROOT" true "$CLEAN_VENDOR"
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 extract "$MY_DIR"/proprietary-files-twrp.txt "$SRC" "$SECTION"
 
-TWRP_QSEECOMD="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE_COMMON"/proprietary/recovery/root/sbin/qseecomd
+BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE_COMMON"/proprietary
+
+TWRP_QSEECOMD="$BLOB_ROOT"/recovery/root/sbin/qseecomd
 
 sed -i "s|/system/bin/linker64|/sbin/linker64\x0\x0\x0\x0\x0\x0|g" "$TWRP_QSEECOMD"
 
-echo "debug"
+for HIDL_BASE_LIB in $(grep -lr "android\.hidl\.base@1\.0\.so" $BLOB_ROOT); do
+    patchelf --remove-needed android.hidl.base@1.0.so "$HIDL_BASE_LIB" || true
+done
+
+for HIDL_MANAGER_LIB in $(grep -lr "android\.hidl\.@1\.0\.so" $BLOB_ROOT); do
+    patchelf --remove-needed android.hidl.manager@1.0.so "$HIDL_MANAGER_LIB" || true
+done
 echo ""$MY_DIR"/../$DEVICE/proprietary-files.txt"
 if [ -s "$MY_DIR"/../$DEVICE/proprietary-files.txt ]; then
     # Reinitialize the helper for device
     setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false "$CLEAN_VENDOR"
     extract "$MY_DIR"/../$DEVICE/proprietary-files.txt "$SRC" "$SECTION"
 fi
-
 "$MY_DIR"/setup-makefiles.sh
