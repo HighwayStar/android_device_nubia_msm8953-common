@@ -26,6 +26,7 @@
 /dev/bcm2079x                                                              u:object_r:nfc_device:s0
 
 # Sensors
+/(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@1\.0-service\.nubia8953             u:object_r:hal_sensors_default_exec:s0
 /sys/devices/virtual/proximity/proximity(/.*)?                                     u:object_r:sysfs_sensors:s0
 /sys/devices/virtual/light/light(/.*)?                                     u:object_r:sysfs_sensors:s0
 
