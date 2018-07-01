@@ -268,3 +268,14 @@
 /dev/block/platform/soc/7464900.sdhci/by-name/frp       0600   system     system
 /dev/block/platform/soc/624000.ufshc/by-name/frp        0600   system     system
 /dev/block/platform/soc/1da4000.ufshc/by-name/frp       0600   system     system
+
+# Nubia led
+/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   blink_mode       0660    input   system
+/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   brightness       0660    input   system
+/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   fade_parameter   0660    input   system
+/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   grade_parameter  0660    input   system
+/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   outn             0660    input   system
+
+# Nubia battery (used by lights hal)
+/sys/devices/soc/qpnp-smbcharger-18/power_supply/battery     capacity         0660   input system
+/sys/devices/soc/qpnp-smbcharger-18/power_supply/battery     status           0660   input system
