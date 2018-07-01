@@ -28,6 +28,9 @@
 #
 
 import init.carrier.rc
+# nubia customization
+import init.nb.device.rc
+
 
 on early-init
     mkdir /firmware 0771 system system

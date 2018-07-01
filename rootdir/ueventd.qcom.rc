@@ -279,3 +279,6 @@
 # Nubia battery (used by lights hal)
 /sys/devices/soc/qpnp-smbcharger-18/power_supply/battery     capacity         0660   input system
 /sys/devices/soc/qpnp-smbcharger-18/power_supply/battery     status           0660   input system
+
+# goodix fp
+/dev/goodix_fp        0644    system      system
