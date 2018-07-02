@@ -762,6 +762,9 @@ bin/time_daemon
 -vendor/lib64/libtime_genoff.so
 vendor/lib64/libTimeService.so
 
+# Touchscreen fw
+etc/firmware/nubia_tp_1302_jdi_fw.img
+
 # Widevine
 vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/libwvdrm_L3.so
