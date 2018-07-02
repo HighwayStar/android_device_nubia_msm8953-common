@@ -116,6 +116,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
 
+# Keylaouts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/keylayout/gf5216m.kl:system/usr/keylayout/gf5216m.kl \
+    $(LOCAL_PATH)/keylayout/nubia_synaptics_1302.kl:system/usr/keylayout/nubia_synaptics_1302.kl
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8953
