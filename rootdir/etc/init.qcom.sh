@@ -304,6 +304,8 @@ case "$target" in
                   ;;
        esac
         ;;
+        # Nubia M2 nx551j has keys
+        setprop qemu.hw.mainkeys 1
 esac
 
 #

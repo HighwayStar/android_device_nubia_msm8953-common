@@ -104,6 +104,12 @@ QCOM_BT_READ_ADDR_FROM_PROP := true
 # Camera
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
+# CMHW
+BOARD_USES_CYANOGEN_HARDWARE := true
+BOARD_HARDWARE_CLASS += \
+    hardware/cyanogen/cmhw \
+    $(DEVICE_PATH)/cmhw
+
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
