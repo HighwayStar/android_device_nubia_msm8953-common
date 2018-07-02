@@ -125,6 +125,7 @@ PRODUCT_COPY_FILES += \
 
 # Keylaouts
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/keylayout/goodix-ts.kl:system/usr/keylayout/goodix-ts.kl \
     $(LOCAL_PATH)/keylayout/gf5216m.kl:system/usr/keylayout/gf5216m.kl \
     $(LOCAL_PATH)/keylayout/nubia_synaptics_1302.kl:system/usr/keylayout/nubia_synaptics_1302.kl
 

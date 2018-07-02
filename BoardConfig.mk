@@ -166,6 +166,7 @@ USE_SENSOR_MULTI_HAL := true
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc/78b7000.i2c/i2c-3/3-005d/wakeup_gesture"
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
