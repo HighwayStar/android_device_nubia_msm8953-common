@@ -22,6 +22,10 @@ PRODUCT_AAPT_CONFIG := normal
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay
+
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
