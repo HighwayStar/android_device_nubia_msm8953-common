@@ -4,7 +4,7 @@
 # For all nubia projects defined in device/zte
 
 on init
-    export LD_SHIM_LIBS "/system/lib/libNubiaImageAlgorithm.so|/system/lib/libshim_camera.so:/system/bin/mm-qcamera-daemon|libshim_libc.so"
+    export LD_SHIM_LIBS "/system/lib/libNubiaImageAlgorithm.so|/system/lib/libshim_camera.so:/system/lib/libNubiaImageAlgorithmBSP.so|/system/lib/libshim_camera.so:/system/bin/mm-qcamera-daemon|libshim_libc.so"
 
 service gx_fpd /system/bin/gx_fpd
     class core

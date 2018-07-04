@@ -21,7 +21,6 @@ vendor/lib/libadm.so
 vendor/lib/libadpcmdec.so
 vendor/lib/libaudcal.so
 vendor/lib/libaudioalsa.so
-vendor/lib/libaudiodevarb.so
 vendor/lib/libsmwrapper.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
@@ -32,12 +31,11 @@ vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 vendor/lib64/libaudioalsa.so
-vendor/lib64/libaudiodevarb.so
 vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
 
-# Audio ACDB
+# ACDB
 etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
 etc/acdbdata/MTP/MTP_General_cal.acdb
 etc/acdbdata/MTP/MTP_Global_cal.acdb
@@ -200,10 +198,6 @@ vendor/lib/libmmcamera_ubifocus_lib.so
 vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmqjpegdma.so
-vendor/lib/libmmsw_detail_enhancement.so
-vendor/lib/libmmsw_math.so
-vendor/lib/libmmsw_opencl.so
-vendor/lib/libmmsw_platform.so
 vendor/lib/libois_lc898122.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_jpegdec.so
@@ -226,7 +220,8 @@ lib/libalSDK.so
 lib/libalSPE.so
 lib/libPrettyWaterMark.so
 lib/libBigAperture.so
-
+lib/libNubiaImageAlgorithmBSP.so
+lib/libalParseOTP.so
 
 # Camera postprocessing
 lib64/libAlgorithm.so
@@ -243,6 +238,7 @@ lib64/libmulti_exposure.so
 lib64/libmpbase.so
 lib64/libnubia_clone.so
 lib64/libnubia_effect.so
+lib64/libNubiaImageAlgorithmBSP.so
 lib64/libnubia_delay_recorder.so
 lib64/libavfilter.so
 lib64/libnubia_gallery_player.so
@@ -255,6 +251,7 @@ lib64/libPrettyWaterMark.so
 lib64/libBigAperture.so
 lib64/libNubiaImageAlgorithm.so
 lib64/libNubiaxmptoolkit.so
+lib64/libalParseOTP.so
 vendor/lib64/libmmcamera2_frame_algorithm.so
 vendor/lib64/libmmcamera2_is.so
 vendor/lib64/libmmcamera2_q3a_core.so
@@ -485,7 +482,6 @@ vendor/lib64/hw/gatekeeper.msm8953.so
 
 # GPS
 bin/loc_launcher
-bin/lowi-server
 etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.vzw_library.xml
 etc/permissions/com.qualcomm.location.xml
@@ -511,13 +507,10 @@ vendor/lib64/libloc_ext.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblowi_client.so
-vendor/lib64/liblowi_wifihal.so
-vendor/lib64/liblowi_wifihal_nl.so
 vendor/lib64/libquipc_os_api.so
 vendor/lib64/libulp2.so
 vendor/lib64/libxt_native.so
 vendor/lib64/libxtadapter.so
-vendor/lib64/libxtwifi_ulp_adaptor.so
 
 # Graphics
 vendor/lib/egl/eglSubDriverAndroid.so
@@ -707,7 +700,6 @@ vendor/lib64/libsmemlog.so
 -app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
 bin/port-bridge
-bin/qmi_motext_hook
 bin/radish
 bin/rmt_storage
 bin/tftp_server
@@ -716,9 +708,6 @@ etc/data/netmgr_config.xml
 etc/permissions/qcrilhook.xml
 -framework/qti-telephony-common.jar|3cea332c3cc179fae5691763c8e55027cc76ffc8
 -framework/qcrilhook.jar
-lib64/libmotext_inf.so
-lib64/libqmimotext.so
-lib64/libtzssm.so
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
 vendor/lib/libmdmdetect.so
