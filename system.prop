@@ -104,6 +104,7 @@ persist.radio.custom_ecc=0
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
+persist.radio.apm_sim_not_pwdn=1
 
 # Storage
 ro.sys.sdcardfs=true
