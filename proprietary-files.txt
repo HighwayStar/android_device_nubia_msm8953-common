@@ -395,6 +395,9 @@ vendor/lib/libchromatix_s5k3p3_snapshot.so
 vendor/lib/libchromatix_s5k3p3_zsl_preview_dw9800.so
 vendor/lib/libchromatix_s5k3p3_zsl_video_dw9800.so
 
+# Charger
+bin/hvdcp_opti
+
 # CNE
 bin/cnd
 etc/cne/SwimConfig.xml
@@ -761,3 +764,6 @@ vendor/lib/mediadrm/libwvdrmengine.so
 
 # WiFi
 etc/firmware/wlan/prima/WCNSS_cfg.dat
+
+# test
+#-priv-app/Camera/Camera.apk
