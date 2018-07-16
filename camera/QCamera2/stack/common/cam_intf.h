@@ -426,6 +426,7 @@ typedef struct{
     /* supported instant capture/AEC convergence modes */
     size_t supported_instant_aec_modes_cnt;
     cam_aec_convergence_type supported_instant_aec_modes[CAM_AEC_CONVERGENCE_MAX];
+    volatile char         nubia_reserved1[8304];
 } cam_capability_t;
 
 typedef enum {
@@ -954,6 +955,41 @@ typedef struct {
     INCLUDE(CAM_INTF_AF_STATE_TRANSITION,               uint8_t,                     1);
     INCLUDE(CAM_INTF_PARM_INITIAL_EXPOSURE_INDEX,       uint32_t,                    1);
     INCLUDE(CAM_INTF_PARM_INSTANT_AEC,                  uint8_t,                     1);
+    volatile char nubia_reserved1[3];
+    INCLUDE(NUBIA_10,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_07,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_08,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_09,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_11,                                   uint8_t,                    24);
+    INCLUDE(NUBIA_12,                                   uint8_t,                    60);
+    INCLUDE(NUBIA_13,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_14,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_15,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_16,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_17,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_18,                                   uint8_t,                     4);
+
+    INCLUDE(NUBIA_01,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_02,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_03,                                   uint8_t,                     1);
+    volatile char nubia_reserved2[3];
+    INCLUDE(NUBIA_04,                                   uint8_t,                     8);
+    INCLUDE(NUBIA_05,                                   uint8_t,                     691216);
+    INCLUDE(NUBIA_06,                                   uint8_t,                     4);
+
+
+    INCLUDE(NUBIA_19,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_20,                                   uint8_t,                     4);
+
+    INCLUDE(NUBIA_22,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_23,                                   uint8_t,                     1);
+    INCLUDE(NUBIA_27,                                   uint8_t,                     1);
+    volatile char nubia_reserved3[2];
+    INCLUDE(NUBIA_24,                                   uint8_t,                     4);
+    INCLUDE(NUBIA_25,                                   uint8_t,                     16);
+    INCLUDE(NUBIA_26,                                   uint8_t,                     4);
+
+    INCLUDE(NUBIA_21,                                   uint8_t,                     1);
 } metadata_data_t;
 
 /* Update clear_metadata_buffer() function when a new is_xxx_valid is added to

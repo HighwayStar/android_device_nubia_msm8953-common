@@ -599,6 +599,20 @@ typedef enum {
     CAM_ISO_MODE_800,
     CAM_ISO_MODE_1600,
     CAM_ISO_MODE_3200,
+    NUBIA_ISO_1,
+    NUBIA_ISO_2,
+    NUBIA_ISO_3,
+    NUBIA_ISO_4,
+    NUBIA_ISO_5,
+    NUBIA_ISO_6,
+    NUBIA_ISO_7,
+    NUBIA_ISO_8,
+    NUBIA_ISO_9,
+    NUBIA_ISO_10,
+    NUBIA_ISO_11,
+    NUBIA_ISO_12,
+    NUBIA_ISO_13,
+    NUBIA_ISO_14,
     CAM_ISO_MODE_MAX
 } cam_iso_mode_type;
 
@@ -649,6 +663,7 @@ typedef enum {
     CAM_FOCUS_MODE_CONTINOUS_VIDEO,
     CAM_FOCUS_MODE_CONTINOUS_PICTURE,
     CAM_FOCUS_MODE_MANUAL,
+    CAM_FOCUS_MODE_NUBIA,
     CAM_FOCUS_MODE_MAX
 } cam_focus_mode_type;
 
@@ -1281,6 +1296,7 @@ typedef struct {
 typedef struct {
     uint32_t scale;
     float diopter;
+    volatile char         nubia_reserved1[4];
 } cam_focus_pos_info_t ;
 
 typedef struct {
@@ -1339,6 +1355,7 @@ typedef struct {
     cam_focus_mode_type focus_mode;        /* focus mode from backend */
     int32_t focus_pos;
     cam_af_flush_info_t flush_info;
+    volatile char         nubia_reserved1[4];
 } cam_auto_focus_data_t;
 
 typedef struct {
@@ -1473,6 +1490,7 @@ typedef struct {
     int32_t est_snap_iso_value;
     uint32_t est_snap_luma;
     uint32_t est_snap_target;
+    volatile char nubia_reserved[36];
 } cam_3a_params_t;
 
 typedef struct {
@@ -1493,6 +1511,7 @@ typedef struct {
     int32_t cct_value;
     cam_awb_gain_t rgb_gains;
     cam_awb_ccm_update_t ccm_update;
+    volatile char nubia_reserved[4];
 } cam_awb_params_t;
 
 typedef struct {
@@ -2115,9 +2134,36 @@ typedef enum {
     /* Touch exposure compensation (EV) status */
     CAM_INTF_META_TOUCH_AE_RESULT,
     /* Param for updating initial exposure index value*/
-    CAM_INTF_PARM_INITIAL_EXPOSURE_INDEX,
+    CAM_INTF_PARM_INITIAL_EXPOSURE_INDEX, // oss 216 stock 216
+    NUBIA_01, //217 present in stock QCameraParameters::setFusionCppParams
+    NUBIA_02, //218 QCameraParameters::getSensorDacValue
+    NUBIA_03, //219 QCameraParameters::setHDRFusionMode
+    NUBIA_04, //220 something QCamera2HardwareInterface::alCMFusionParameterGet related
+    NUBIA_05, //221 QCameraParametersIntf::getAL3DSyncType
+    NUBIA_06, //222 QCameraParameters::setAL3200_SCID
     /* Param for enabling instant aec*/
-    CAM_INTF_PARM_INSTANT_AEC,
+    CAM_INTF_PARM_INSTANT_AEC, //oss 217 stock 223
+    NUBIA_07, //224 QCameraParameters::adjustExposureTime
+    NUBIA_08, //225 QCameraParameters::setSlowShutterMode
+    NUBIA_09, //226 QCameraParameters::adjustExposureTime
+    NUBIA_10, //227 QCameraMuxer::composeMpo
+    NUBIA_11, //228 QCameraParameters::setMwbAreas
+    NUBIA_12, //229 QCameraParameters::readSensorDngData
+    NUBIA_13, //230 QCameraParameters::setCameraAppMode
+    NUBIA_14, //231 QCameraMuxer::storeJpeg ?
+    NUBIA_15, //232 QCameraParameters::setBacklightFlashState
+    NUBIA_16, //233 QCameraParameters::setSharpness
+    NUBIA_17, //234 QCameraParameters::setZtemtEffect
+    NUBIA_18, //235 QCameraParameters::setReprocCount
+    NUBIA_19, //236 QCameraParameters::isOptiZoomEnabled
+    NUBIA_20, //237 QCameraParameters::set_zte_recording_startstop
+    NUBIA_21, //238 QCameraParameters::setCDSMode
+    NUBIA_22, //239 QCameraParameters::setEffect
+    NUBIA_23,
+    NUBIA_24,
+    NUBIA_25,
+    NUBIA_26,
+    NUBIA_27,
     CAM_INTF_PARM_MAX
 } cam_intf_parm_type_t;
 
