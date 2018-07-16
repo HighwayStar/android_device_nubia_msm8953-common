@@ -63,7 +63,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libshim_camera \
     libshim_libc \
-    libshims_cameraservice \
     Snap
 
 # Display
