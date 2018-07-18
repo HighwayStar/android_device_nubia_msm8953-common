@@ -4930,6 +4930,12 @@ QCamera3HardwareInterface::translateFromHalMetadata(
                 CAM_MAX_SHADING_MAP_HEIGHT);
         size_t map_width = MIN((size_t)gCamCapability[mCameraId]->lens_shading_map_size.width,
                 CAM_MAX_SHADING_MAP_WIDTH);
+        //google cam requires lensshading values be all bigger than 1.0
+        for (size_t i = 0; i < map_width * map_height*4; ++i) {
+                if (lensShadingMap->lens_shading[i] < 1.0f )
+                        lensShadingMap->lens_shading[i]= 1.0f;
+        }
+
         camMetadata.update(ANDROID_STATISTICS_LENS_SHADING_MAP,
                 lensShadingMap->lens_shading, 4U * map_width * map_height);
     }
