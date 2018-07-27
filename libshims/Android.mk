@@ -10,7 +10,7 @@ LOCAL_SHARED_LIBRARIES := libc
 
 LOCAL_MODULE := libshim_libc
 LOCAL_MODULE_TAGS := optional
-
+LOCAL_VENDOR_MODULE := true
 LOCAL_32_BIT_ONLY := true
 
 include $(BUILD_SHARED_LIBRARY)

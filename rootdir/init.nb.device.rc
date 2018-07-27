@@ -3,9 +3,6 @@
 # init.nb.rc
 # For all nubia projects defined in device/zte
 
-on init
-    export LD_SHIM_LIBS "/system/bin/mm-qcamera-daemon|libshim_libc.so"
-
 service gx_fpd /system/bin/gx_fpd
     class core
     user system

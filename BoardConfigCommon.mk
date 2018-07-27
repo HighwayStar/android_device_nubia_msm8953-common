@@ -178,6 +178,10 @@ TARGET_POWERHAL_VARIANT := qcom
 # Properties
 TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
 
+# Shim
+TARGET_LD_SHIM_LIBS := \
+    /vendor/bin/mm-qcamera-daemon|libshim_libc.so
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
 include $(VENDOR_PATH)/twrp.mk
