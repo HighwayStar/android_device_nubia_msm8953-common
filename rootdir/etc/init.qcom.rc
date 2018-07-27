@@ -1064,3 +1064,7 @@ service time_daemon /vendor/bin/time_daemon
     class main
     user root
     group root
+
+on property:ro.vendor.radio.noril=*
+    setprop ro.radio.noril ${ro.vendor.radio.noril}
+

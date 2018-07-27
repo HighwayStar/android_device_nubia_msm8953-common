@@ -36,7 +36,7 @@ datamode=`getprop persist.vendor.data.mode`
 
 case "$baseband" in
     "apq")
-    setprop ro.radio.noril yes
+    setprop ro.vendor.radio.noril yes
     stop ril-daemon
 esac
 
