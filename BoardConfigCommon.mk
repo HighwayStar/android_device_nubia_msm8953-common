@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/nubia/nx551j
+VENDOR_PATH := device/nubia/msm8953-common
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8953
@@ -35,9 +35,6 @@ TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
-
-# Asserts
-TARGET_OTA_ASSERT_DEVICE := nx551j,NX551J
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -100,7 +97,6 @@ AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_READ_ADDR_FROM_PROP := true
 
@@ -111,7 +107,7 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += \
     hardware/cyanogen/cmhw \
-    $(DEVICE_PATH)/cmhw
+    $(VENDOR_PATH)/cmhw
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
@@ -133,7 +129,6 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CONFIG := lineageos_nx551j_defconfig
 TARGET_KERNEL_SOURCE := kernel/nubia/msm8953
 
 # Lights
@@ -154,14 +149,14 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 56899361792 #56899378176 - 16384
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/fstab.qcom
 
 # RIL
 TARGET_RIL_VARIANT := caf
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
@@ -173,9 +168,12 @@ USE_SENSOR_MULTI_HAL := true
 TARGET_POWERHAL_VARIANT := qcom
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc/78b7000.i2c/i2c-3/3-005d/wakeup_gesture"
 
+# Properties
+TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
-include $(DEVICE_PATH)/twrp.mk
+include $(VENDOR_PATH)/twrp.mk
 endif
 
 # WiFi
@@ -190,4 +188,4 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
-include vendor/nubia/nx551j/BoardConfigVendor.mk
+include vendor/nubia/msm8953-common/BoardConfigVendor.mk
