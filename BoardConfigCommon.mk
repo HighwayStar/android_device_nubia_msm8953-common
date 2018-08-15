@@ -107,8 +107,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += \
-    hardware/cyanogen/cmhw \
-    $(VENDOR_PATH)/cmhw
+    hardware/cyanogen/cmhw
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
@@ -167,7 +166,6 @@ USE_SENSOR_MULTI_HAL := true
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
-TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc/78b7000.i2c/i2c-3/3-005d/wakeup_gesture"
 
 # Properties
 TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
