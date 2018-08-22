@@ -37,7 +37,7 @@ fi
 setup_vendor "$DEVICE_COMMON" "$VENDOR" "$CM_ROOT" true
 
 # Copyright headers and guards
-write_headers "nx549j"
+write_headers "nx549j nx551j"
 
 # Main Qcom blobs
 write_makefiles "$MY_DIR"/proprietary-files.txt
