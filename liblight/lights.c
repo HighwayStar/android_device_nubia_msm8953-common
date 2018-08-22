@@ -198,12 +198,15 @@ static int set_breath_light_locked(int event,
 	    return 0;
 	}
     }
-
+#ifdef NO_HOME_LED
     write_int(BREATH_RED_OUTN, LEFT_MASK);
     write_str(BREATH_RED_FADE, "3 0 4");
     write_str(BREATH_RED_GRADE, "0 255");
     write_int(BREATH_RED_LED, AW_FADE_AUTO);
     write_int(BREATH_RED_OUTN, RIGHT_MASK);
+#else
+    write_int(BREATH_RED_OUTN, HOME_MASK);
+#endif
     write_str(BREATH_RED_FADE, "3 0 4");
     write_str(BREATH_RED_GRADE, "0 255");
     write_int(BREATH_RED_LED, AW_FADE_AUTO);
@@ -242,6 +245,11 @@ static int set_light_buttons(struct light_device_t* dev,
 	rc = property_get("persist.sy.disablebtn", prop , "1");
 	
 	
+	//mid
+#ifndef NO_HOME_LED
+        write_int(BREATH_RED_OUTN, HOME_MASK);
+        write_int(BREATH_RED_LED, AW_CONST_ON);
+#endif
 
 	if(!rc || (strncmp(prop, "1", PROP_VALUE_MAX) >=0)){
 		//right
