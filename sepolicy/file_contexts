@@ -4,6 +4,9 @@
 # Camera
 /data/vendor/qcam(/.*)?                                                    u:object_r:vendor_camera_data_file:s0
 
+# DRM
+/vendor/bin/hw/android\.hardware\.drm@1\.0-service\.widevine               u:object_r:hal_drm_widevine_exec:s0
+
 # Goodix Fingerprint
 /dev/goodix_fp     u:object_r:gx_fpd_device:s0
 /(vendor|system/vendor)/bin/gx_fpd       u:object_r:gx_fpd_exec:s0
