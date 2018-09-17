@@ -161,6 +161,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USES_MKE2FS := true
 
 # Power
+TARGET_HAS_NO_WLAN_STATS := true
+TARGET_TAP_TO_WAKE_NODE := "/sys/board_properties/tpd_suspend_status"
 TARGET_USES_INTERACTION_BOOST := true
 
 # Recovery
