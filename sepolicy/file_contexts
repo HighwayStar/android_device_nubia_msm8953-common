@@ -19,3 +19,11 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@1\.0-service\.nubia             u:object_r:hal_sensors_default_exec:s0
 /sys/devices/virtual/proximity/proximity(/.*)?                                     u:object_r:sysfs_sensors:s0
 /sys/devices/virtual/light/light(/.*)?                                     u:object_r:sysfs_sensors:s0
+
+# Touchscreen
+# nubia nx551j touchscreen files
+/sys/devices/soc/78b7000\.i2c/i2c-3/3-005d(/.*)?                           u:object_r:sysfs_touchpanel:s0
+/sys/devices/soc/7af5000\.i2c/i2c-5/5-0020/input/input1(/.*)?              u:object_r:sysfs_touchpanel:s0
+
+# nubia nx549j touchscreen files
+/sys/devices/soc/78b7000\.i2c/i2c-3/3-0020/input/input1(/.*)?              u:object_r:sysfs_touchpanel:s0
