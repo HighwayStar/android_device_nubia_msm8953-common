@@ -1,0 +1,3 @@
+goodix.fp.service.ready               u:object_r:gx_fpd_prop:s0
+goodix.fp.version                     u:object_r:gx_fpd_prop:s0
+persist.sys.fp.onstart                u:object_r:gx_fpd_prop:s0
