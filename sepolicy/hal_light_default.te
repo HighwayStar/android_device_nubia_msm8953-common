@@ -1,0 +1,2 @@
+r_dir_file(hal_light_default, sysfs_battery_supply)
+allow hal_light_default sysfs_battery_supply:file read;

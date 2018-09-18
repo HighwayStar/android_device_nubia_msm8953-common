@@ -12,6 +12,9 @@
 # HALs
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.0-service\.nubia		u:object_r:hal_fingerprint_nubia_exec:s0
 
+# Lights
+/sys/devices/soc/78b6000\.i2c/i2c-2/2-0045/leds/nubia_led(/.*)?                      u:object_r:sysfs_leds:s0
+
 # Sensors
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@1\.0-service\.nubia             u:object_r:hal_sensors_default_exec:s0
 /sys/devices/virtual/proximity/proximity(/.*)?                                     u:object_r:sysfs_sensors:s0
