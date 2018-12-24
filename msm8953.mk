@@ -38,6 +38,7 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8953 \
     audio.r_submix.default \
     audio.usb.default \
+    libaacwrapper \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing
@@ -201,6 +202,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.0 \
     libandroid_net \
+    libnl \
     netutils-wrapper-1.0
 
 # OMX
@@ -354,5 +356,10 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/fstman.ini:system/etc/wifi/fstman.ini
+
+# WiFi Display
+PRODUCT_BOOT_JARS += \
+    WfdCommon
+
 # Call the proprietary setup
 $(call inherit-product, vendor/nubia/msm8953-common/msm8953-common-vendor.mk)
