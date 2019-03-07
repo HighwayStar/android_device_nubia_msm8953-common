@@ -1,6 +1,3 @@
-# Block devices
-/dev/block/mmcblk0p27							u:object_r:persist_block_device:s0
-
 # Camera
 /data/vendor/qcam(/.*)?                                                    u:object_r:vendor_camera_data_file:s0
 
