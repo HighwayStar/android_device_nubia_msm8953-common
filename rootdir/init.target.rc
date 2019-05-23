@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+# Copyright (c) 2014-2015, 2018, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -32,7 +32,10 @@ import init.carrier.rc
 import init.nb.device.rc
 
 on early-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules audio_apr audio_adsp_loader audio_q6_notifier audio_q6 audio_usf audio_native audio_pinctrl_wcd audio_swr audio_platform audio_swr_ctrl audio_hdmi audio_wcd9xxx audio_wcd_core audio_wsa881x_analog audio_wsa881x audio_mbhc audio_stub audio_digital_cdc audio_analog_cdc audio_wcd_cpe audio_cpe_lsm audio_wcd9335 audio_machine_sdm450 audio_machine_ext_sdm450
     write /proc/sys/kernel/sched_boost 1
+    mkdir /firmware 0771 system system
+    symlink /data/tombstones /tombstones
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
@@ -41,35 +44,60 @@ on fs
     mount_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
 
-    # Set permissions for persist partition
     chown root system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
-    mkdir /mnt/vendor/persist/bluetooth 0770 bluetooth bluetooth
     mkdir /mnt/vendor/persist/data 0700 system system
     mkdir /mnt/vendor/persist/bms 0700 root system
-    mkdir /mnt/vendor/persist/display 0770 system graphics
-    mkdir /mnt/vendor/persist/time 0770 system system
     restorecon_recursive /mnt/vendor/persist
 
+    #write /sys/kernel/boot_adsp/boot 1
+
+# nubia edit
+#    wait /dev/block/bootdevice/by-name/oem
+#    mount ext4 /dev/block/bootdevice/by-name/oem /oem ro nosuid nodev barrier=1
+
+on post-fs
+    start vendor.qseecomd
+    exec - system system -- /vendor/bin/init.qti.qseecomd.sh
+    write /dev/ipa 1
+
+on post-fs
+    # set RLIMIT_MEMLOCK to 64MB
+    setrlimit 8 67108864 67108864
+
 on post-fs-data
+    mkdir /data/tombstones 0771 system system
+    mkdir /tombstones/modem 0771 system system
+    mkdir /tombstones/lpass 0771 system system
+    mkdir /tombstones/wcnss 0771 system system
+    mkdir /tombstones/dsps 0771 system system
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
     mkdir /data/misc/dts 0770 media audio
-    mkdir /data/misc/hbtp 0750 system system
+    mkdir /data/vendor/hbtp 0750 system system
+    mkdir /data/vendor/tloc 0700 system drmrpc
 
-    # Create folder for mm-qcamera-daemon
+
+#Create folder for mm-qcamera-daemon
+#nubia edit: path changed to vendor/camera changed to vendor/qcam
     mkdir /data/vendor/qcam 0770 camera camera
 
-# Start camera server as daemon
-service qcamerasvr /vendor/bin/mm-qcamera-daemon
+#start camera server as daemon
+service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
 
 on init
-   write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+    write /dev/stune/foreground/schedtune.sched_boost_no_override 1
+    write /dev/stune/top-app/schedtune.sched_boost_no_override 1
+    write /dev/stune/schedtune.colocate 0
+    write /dev/stune/background/schedtune.colocate 0
+    write /dev/stune/foreground/schedtune.colocate 0
+    write /dev/stune/top-app/schedtune.colocate 1
+    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
-service qfp-daemon /system/bin/qfp-daemon
+service qfp-daemon /system/vendor/bin/qfp-daemon
    class late_start
    user system
    group system drmrpc
@@ -104,7 +132,7 @@ service vendor.qseecomd /vendor/bin/qseecomd
 #service aostlmd /system/bin/aostlmd
 #   class late_start
 #   user system
-#   group system
+#   group system net_raw
 
 service perfd /system/vendor/bin/perfd
    class main
@@ -118,7 +146,7 @@ service gamed /system/vendor/bin/gamed
    disabled
    socket gamed seqpacket 0640 system system
 
-service thermal-engine /vendor/bin/thermal-engine
+service thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
    socket thermal-send-client stream 0666 system system
@@ -127,6 +155,15 @@ service thermal-engine /vendor/bin/thermal-engine
    socket thermal-send-rule stream 0660 system system
    group root
 
+service time_daemon /system/vendor/bin/time_daemon
+   class late_start
+   user root
+   group root
+
+service audiod /system/vendor/bin/audiod
+   class late_start
+   user system
+   group system
 
 on boot
     start rmt_storage
@@ -140,8 +177,48 @@ on boot
     chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+    chown system system /sys/kernel/hbtp/display_pwr
 
-service wcnss-service /vendor/bin/wcnss_service
+# Add a cpuset for the camera daemon
+# We want all cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    write /dev/cpuset/camera-daemon/cpus 0-3
+    write /dev/cpuset/camera-daemon/mems 0
+    chown cameraserver cameraserver /dev/cpuset/camera-daemon
+    chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
+    chmod 0660 /dev/cpuset/camera-daemon/tasks
+
+    ####Regionalization config and prop files####
+    chmod 0644 /persist/speccfg/spec
+    chmod 0644 /persist/speccfg/devicetype
+    chmod 0644 /persist/speccfg/mbnversion
+    chmod 0644 /persist/speccfg/.not_triggered
+    chmod 0644 /persist/speccfg/vendor_ro.prop
+    chmod 0644 /persist/speccfg/vendor_persist.prop
+    chmod 0644 /persist/speccfg/submask
+    chmod 0644 /persist/speccfg/partition
+    chown system system /persist/speccfg/spec
+    chown system system /persist/speccfg/devicetype
+    chown system system /persist/speccfg/mbnversion
+    chown system system /persist/speccfg/.not_triggered
+    chown system system /persist/speccfg/vendor_ro.prop
+    chown system system /persist/speccfg/vendor_persist.prop
+    chown system system /persist/speccfg/submask
+    chown system system /persist/speccfg/partition
+
+# access permission for wlan
+    chown system system /mnt/vendor/persist/WCNSS_qcom_wlan_nv.bin
+
+#USB controller configuration
+    write /sys/module/g_android/parameters/mtp_tx_req_len 131072
+    write /sys/module/g_android/parameters/mtp_rx_req_len 131072
+    write /sys/class/android_usb/android0/f_rndis_qc/rndis_transports BAM2BAM_IPA
+    setprop vendor.usb.rndis.func.name "rndis_bam"
+    setprop vendor.usb.rmnet.func.name "rmnet_bam"
+    setprop vendor.usb.rmnet.inst.name "rmnet"
+    setprop vendor.usb.dpl.inst.name "dpl"
+
+service wcnss-service /system/vendor/bin/wcnss_service
     class late_start
     user system
     group system wifi radio
@@ -165,15 +242,15 @@ service vendor.imsdatadaemon /system/vendor/bin/imsdatadaemon
 on property:vendor.ims.QMI_DAEMON_STATUS=1
     start vendor.imsdatadaemon
 
-service vendor.ims_rtp_daemon /vendor/bin/ims_rtp_daemon
-    class main
-    user system
-    group radio diag inet log
+service vendor.ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
+   class main
+   user system
+   group radio diag inet log
 
-service vendor.imsrcsservice /vendor/bin/imsrcsd
-    class main
-    user system
-    group radio diag inet log
+service vendor.imsrcsservice /system/vendor/bin/imsrcsd
+   class main
+   user system
+   group radio diag inet log wakelock
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
     restart vendor.ims_rtp_daemon
@@ -217,26 +294,26 @@ on charger
     setprop persist.sys.usb.config mass_storage
     start qcom-post-boot
     setprop persist.sys.usb.config mass_storage
-    start hvdcp_opti
+    start vendor.hvdcp_opti
 
-service dts_configurator /system/bin/dts_configurator
+service dts_configurator /system/vendor/bin/dts_configurator
     class late_start
     user system
     group media audio
     oneshot
 
-service dtseagleservice /system/bin/dts_eagle_service
+service dtseagleservice /system/vendor/bin/dts_eagle_service
     class late_start
     user system
     group audio media
     disabled
 
-service adsprpcd /vendor/bin/adsprpcd
+service adsprpcd /system/vendor/bin/adsprpcd
     class main
     user media
     group media
 
-service hvdcp_opti /vendor/bin/hvdcp_opti
+service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
    class main
    user root
    group system wakelock
@@ -244,12 +321,12 @@ service hvdcp_opti /vendor/bin/hvdcp_opti
 on property:init.svc.dts_configurator=stopped
     start dtseagleservice
 
-service vendor.per_mgr /vendor/bin/pm-service
+service vendor.per_mgr /system/vendor/bin/pm-service
     class core
     user system
-    group system
+    group system net_raw
 
-service vendor.per_proxy /vendor/bin/pm-proxy
+service vendor.per_proxy /system/vendor/bin/pm-proxy
     class core
     user system
     group system
@@ -262,7 +339,7 @@ on property:sys.shutdown.requested=*
     stop vendor.per_proxy
     stop vendor.ims_rtp_daemon
 
-service energy-awareness /vendor/bin/energy-awareness
+service energy-awareness /system/vendor/bin/energy-awareness
     class main
     user root
     group system
@@ -276,3 +353,22 @@ service mdtpd /system/vendor/bin/mdtpd
 on boot
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/update_fw 1
+
+on boot
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/red/breath
+    chown system system /sys/class/leds/red/delay_on
+    chown system system /sys/class/leds/red/delay_off
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/green/breath
+    chown system system /sys/class/leds/green/delay_on
+    chown system system /sys/class/leds/green/delay_off
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/blue/breath
+    chown system system /sys/class/leds/blue/delay_on
+    chown system system /sys/class/leds/blue/delay_off
+
+service vendor.tlocd /vendor/bin/tloc_daemon
+    class late_start
+    user system
+    group drmrpc gps net_raw
