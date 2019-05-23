@@ -18,6 +18,7 @@
 
 # Lights
 /sys/devices/soc/78b6000\.i2c/i2c-2/2-0045/leds/nubia_led(/.*)?            u:object_r:sysfs_leds:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.nubia   u:object_r:hal_light_default_exec:s0
 
 # NFC (nx549j)
 /dev/bcm2079x                                                              u:object_r:nfc_device:s0
