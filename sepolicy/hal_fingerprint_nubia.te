@@ -28,3 +28,6 @@ allow hal_fingerprint_nubia keystore_service:service_manager find;
 # For permissions checking
 binder_call(hal_fingerprint_nubia, system_server);
 allow hal_fingerprint_nubia permission_service:service_manager find;
+
+allow hal_fingerprint_nubia fingerprintd_data_file:dir { rw_dir_perms };
+allow hal_fingerprint_nubia fingerprintd_data_file:file { create_file_perms };

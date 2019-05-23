@@ -14,7 +14,7 @@
 /persist/data/gxfp(/.*)?    u:object_r:gx_fpd_data_file:s0
 
 # HALs
-/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.0-service\.nubia		u:object_r:hal_fingerprint_nubia_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.nubia		u:object_r:hal_fingerprint_nubia_exec:s0
 
 # Lights
 /sys/devices/soc/78b6000\.i2c/i2c-2/2-0045/leds/nubia_led(/.*)?            u:object_r:sysfs_leds:s0
